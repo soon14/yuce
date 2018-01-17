@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libs\Sizhu;
 use Illuminate\Http\Request;
 use App\Libs\Common;
 use Illuminate\Support\Facades\DB;
@@ -10,8 +11,10 @@ class HomeController extends Controller
 {
     //
     public function index(){
+        $Sizhu = new Sizhu();
+        $sizhu = $Sizhu->getSizhu();
         $types = $this->get_problem_type();
-        return view('meihua.index',['data'=>$types]);
+        return view('meihua.index',['date'=>date('Y-m-d H:i:s'),'data'=>$types,'sizhu'=>$sizhu]);
     }
 
     // 测算提交

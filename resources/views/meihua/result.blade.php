@@ -8,7 +8,6 @@
 			<dl class="dl-horizontal">
 				<dt>测算号</dt>
 				<dd>{{$result->user_data->ce_sn}}</dd>
-				<dt>测算人性别</dt>
 				<dt>测算日期</dt>
 				<dd>{{$result->user_data->cesuan_time}} {{$result->user_data->shichen}} 时</dd>
 				<dt>所问事项</dt>

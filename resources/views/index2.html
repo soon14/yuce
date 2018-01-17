@@ -1,0 +1,68 @@
+<include file="Public:header" />
+<div class="container">
+	<include file="Public:navi" />
+	<div class="jumbotron">
+		<form id="form1" class="form-horizontal" action="/cezi/result"
+			method="post">
+			<div class="shuoming">
+				<h5>占卜说明：</h5>
+				<ul>
+					<li class="">心里先想好要问的事情，然后随机想出两个字来，本站仅限两个字，不用多思考</li>
+					<li>有事则占，无事不占，多占无益</li>
+					<li>若要看详细解释，请加作者QQ：<strong>2512699735</strong></li>
+					<li><small>(农历)</small>{$lunar}</li>
+				</ul>
+			</div>
+			<hr>
+			<label class="control-label" for="sex"><i class="red">*</i>您的性别：</label>
+			<div class="controls">
+				<label class="radio-inline"> <input type="radio"
+					id="problem_type" name="sex" value="1"> 男
+				</label> <label class="radio-inline"> <input type="radio"
+					id="problem_type" name="sex" value="2"> 女
+				</label>
+			</div>
+			<label class="control-label" for="birthday"><i class="red">*</i>
+				出生年月<small>(公历)</small>：</label>
+			<div class="controls">
+				<input class="form-control" onfocus="WdatePicker()"
+					placeholder="请选择日期" datatype="Require" msg="请选择日期" name="birthday"
+					id="birthday" type="text"><span id="birthdayTip"
+					class="tips"></span>
+			</div>
+			<label class="control-label" for="word"><i class="red">*</i>随机字：</label>
+			<div class="controls">
+				<input type="text" class="form-control" id="t1" name="t1"
+					datatype="LimitB" min="2" max="2" msg="随机字1" placeholder="请输入随机字1"><span
+					id="t1Tip" class="tips"></span> <input type="text"
+					class="form-control" id="t2" name="t2" datatype="LimitB" min="2"
+					max="2" msg="随机字2" placeholder="请输入随机字2"><span id="t2Tip"
+					class="tips"></span>
+			</div>
+			<label class="control-label" for="problem_type"><i class="red">*</i>问事类型：</label>
+			<div class="controls">
+				<label class="radio-inline"> <input type="radio"
+					id="problem_type" name="problem_type" value="1"> 事业
+				</label> <label class="radio-inline"> <input type="radio"
+					id="problem_type" name="problem_type" value="2"> 爱情
+				</label> <label class="radio-inline"> <input type="radio"
+					id="problem_type" name="problem_type" value="3"> 健康
+				</label> <label class="radio-inline"> <input type="radio"
+					id="problem_type" name="problem_type" value="4" checked> 杂事
+				</label>
+			</div>
+			<label class="control-label" for="problem"><i class="red">*</i>所问事情简述：</label>
+			<div class="controls">
+				<textarea class="form-control" placeholder="所问何事概述50字以内"
+					datatype="LimitB" min="4" max="400" msg="所问之事?" id="problem"
+					name="problem" rows="3" style="width: 51%"></textarea>
+				<span id="problemTip" class="tips"></span>
+			</div>
+			<div class="controls" id="submit-bt">
+				<input type="hidden" name="toSave" value="1">
+				<button type="button" onclick="Submit('form1');"
+					class="btn  btn-large  btn-success">测算</button>
+			</div>
+		</form>
+	</div>
+<include file="Public:footer" />

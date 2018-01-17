@@ -11,7 +11,7 @@ class HomeController extends Controller
     //
     public function index(){
         $types = $this->get_problem_type();
-        return view('index',['data'=>$types]);
+        return view('meihua.index',['data'=>$types]);
     }
 
     // 测算提交
@@ -87,7 +87,7 @@ class HomeController extends Controller
         }else{
             $act_name='result';
         }
-        return view($act_name,['result'=>$result]);
+        return view('meihua.'.$act_name,['result'=>$result]);
     }
     private   function get_problem_type(){
         $type=['出行','工作','投资','事业','爱情','婚姻','健康','寻物','寻人','杂事'];

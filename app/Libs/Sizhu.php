@@ -22,7 +22,6 @@ class Sizhu
     public function getSizhu($date=''){
         if(empty($date)){
             $year = date('Y');
-            var_dump($year);
             $month = date('m');
             $day = date('d');
             $hour = date('H');

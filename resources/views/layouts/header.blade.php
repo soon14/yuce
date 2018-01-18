@@ -10,7 +10,7 @@
 <!-- Static navbar -->
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">九宫智能预测</a>
+        <a class="navbar-brand" href="/">九宫智能预测</a>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">首页</a></li>

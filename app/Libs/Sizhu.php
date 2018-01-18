@@ -84,6 +84,7 @@ class Sizhu
     }
     function shizhu($hour)
     {
+
         $a = array('甲','乙','丙','丁','戊','己','庚','辛','壬','癸');
         $b = array('子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥');
         if($hour >= 23 || $hour < 1)
@@ -138,7 +139,10 @@ class Sizhu
         if($n > 10)
         {
             $n %= 10;
+            if($n == 0){
+                $n = 10;
+            }
         }
-        return $a[$n - 1] . $b[$shizhi - 1];
+        return $a[$n-1] . $b[$shizhi-1];
     }
 }

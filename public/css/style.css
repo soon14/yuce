@@ -6,3 +6,8 @@ ul {
 .list-inline {
     line-height: 40px;
 }
+.result p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 200;
+}

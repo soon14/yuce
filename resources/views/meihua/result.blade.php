@@ -78,12 +78,19 @@
 					<h4>智能断卦</h4>
 					<p>{{$result->tiyong->zhu->name}} 为 {{$result->tiyong->zhu->tiyong}} , {{$result->tiyong->bing->name}} 为 {{$result->tiyong->bing->tiyong}}</p>
 					<p>{{$result->tiyong->zhu->name}} {{$result->tiyong->zhu->attribute}} <span class="text-success">{{$result->tiyong->guanxi}}</span> {{$result->tiyong->bing->name}} {{$result->tiyong->bing->attribute}}</p>
-					<p> <strong
-								class="@if($result->duanyan->type = '吉') text-success
-						   @elseif($result->duanyan->type = '小吉') text-primary
-						   @elseif($result->duanyan->type = '小凶') text-warning
-                           @elseif($result->duanyan->type = '大凶') @else text-danger @endif"
-						>{{$result->duanyan->type}}</strong> <span>{{$result->duanyan->text}}</span></p>
+					@php
+					$text_style = '';
+						if($result->duanyan->type == '大吉') {
+						 	$text_style = 'text-success';
+						 }elseif($result->duanyan->type == '小吉') {
+						  	$text_style = 'text-primary';
+						 }elseif($result->duanyan->type == '小凶'){
+						  	$text_style = 'text-warning';
+						 }elseif($result->duanyan->type == '大凶')  {
+						 	$text_style = 'text-danger';
+						 }
+					@endphp
+					<p> <strong class="{{$text_style}}">{{$result->duanyan->type}}</strong> {{$result->duanyan->name}}:<span>{{$result->duanyan->text}}</span></p>
 				</div>
 			</div>
 		</div>

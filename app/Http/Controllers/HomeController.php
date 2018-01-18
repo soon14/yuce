@@ -62,7 +62,8 @@ class HomeController extends Controller
         $user_data['ce_sn'] = $sn;
 
         $result = ['s_gua'=>$s_gua,'b_gua'=>$b_gua,'dongyao'=>$dongyao,'user_data'=>$user_data];
-        $result  = $result + $this->tiyong($result);
+        $tiyong  =  $this->tiyong($result);
+        $result = array_merge($result,$tiyong);
 
         //记录日志
         $logs['fid'] = $fid;
@@ -100,15 +101,16 @@ class HomeController extends Controller
         $ty_str = $wuxing['zhu']->tiyong.$wuxing['guanxi'].$wuxing['bing']->tiyong;
         $res['tiyong'] = $wuxing;
         $res['duanyan'] = $this->duanyan($ty_str,$user_data['problem_type']);
+
         return $res;
     }
     private function duanyan($str='',$problem_type){
         $list = [
-            '体比和用'=>['type'=>'小吉','text'=>'所测之事('.$problem_type.')终会如愿，一切顺利'],
-            '体生用'=>['type'=>'小凶','text'=>'所测之情('.$problem_type.')困难重重，很难成功'],
-            '体克用'=>['type'=>'小吉','text'=>'所测之事('.$problem_type.')能够成功，只是比较耗时、耗力、耗财'],
-            '用克体'=>['type'=>'大凶','text'=>'所测之事('.$problem_type.')非但不能成功，还对自己有所损失或者伤害'],
-            '用生体'=>['type'=>'大吉','text'=>'所测之事('.$problem_type.')必然成功，很特别顺心如意'],
+            '体比和用'=>['name'=>'体比和用','type'=>'小吉','text'=>'所测之事('.$problem_type.')终会如愿，一切顺利'],
+            '体生用'=>['name'=>'体生用','type'=>'小凶','text'=>'所测之情('.$problem_type.')困难重重，很难成功'],
+            '体克用'=>['name'=>'体克用','type'=>'小吉','text'=>'所测之事('.$problem_type.')能够成功，只是比较耗时、耗力、耗财'],
+            '用克体'=>['name'=>'用克体','type'=>'大凶','text'=>'所测之事('.$problem_type.')非但不能成功，还对自己有所损失或者伤害'],
+            '用生体'=>['name'=>'用生体','type'=>'大吉','text'=>'所测之事('.$problem_type.')必然成功，很特别顺心如意'],
         ];
          if(isset($list[$str])){
              return $list[$str];

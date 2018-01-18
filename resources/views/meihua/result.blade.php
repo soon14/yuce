@@ -83,7 +83,7 @@
 						   @elseif($result->duanyan->type = '小吉') text-primary
 						   @elseif($result->duanyan->type = '小凶') text-warning
                            @elseif($result->duanyan->type = '大凶') @else text-danger @endif"
-						>{{$result->duanyan->type}}</strong> <span class="">{{$result->duanyan->text}}</span></p>
+						>{{$result->duanyan->type}}</strong> <span>{{$result->duanyan->text}}</span></p>
 				</div>
 			</div>
 		</div>

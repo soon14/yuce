@@ -36,6 +36,7 @@ class HomeController extends Controller
         $data ['client_type'] = Common::getBrowser();
         $uid = md5($data ['ip'].$data ['client_type']);
         $data ['uid'] = $uid;
+        $data ['ctime'] = date('Y-m-d H:i:s');
 
         //记录用户提交
         $fid = DB::table('cz_user_post')->insertGetId($data);
@@ -54,7 +55,7 @@ class HomeController extends Controller
         //输出结果
         $user_data['shichen'] = Common::shichen_name($data['shichen']);
         //$user_data['birthday'] = date('Y年m月d日',$data ['birthday']);
-        $user_data['cesuan_time'] = date('Y年m月d日 H:i:s');
+        $user_data['cesuan_time'] = date('Y-m-d H:i:s');
         //$user_data['word'] = $data ['t1'] ." ".$data ['t2'];
         $user_data['problem_text'] = $data ['problem_text'];
         $user_data['problem_type'] = $data['problem_type'];
@@ -66,7 +67,7 @@ class HomeController extends Controller
         //记录日志
         $logs['fid'] = $fid;
         $logs['uid'] = $uid;
-        $logs['result'] = json_encode($result);
+        $logs['result'] = json_encode($result,JSON_UNESCAPED_UNICODE);
         DB::table('cz_result')->insert($logs);
 
         return redirect("/get_result?csn=$sn");
@@ -75,6 +76,8 @@ class HomeController extends Controller
         $s_gua = $result['s_gua'];
         $b_gua = $result['b_gua'];
         $dongyao = $result['dongyao'];
+        $user_data = $result['user_data'];
+
         $table_e_gua = 'cz_e_gua';
         $res = [];
         if($dongyao->position>3){
@@ -96,16 +99,16 @@ class HomeController extends Controller
         $wuxing = $this->wuxing($t_gua,$y_gua);
         $ty_str = $wuxing['zhu']->tiyong.$wuxing['guanxi'].$wuxing['bing']->tiyong;
         $res['tiyong'] = $wuxing;
-        $res['duanyan'] = $this->duanyan($ty_str);
+        $res['duanyan'] = $this->duanyan($ty_str,$user_data['problem_type']);
         return $res;
     }
-    private function duanyan($str=''){
+    private function duanyan($str='',$problem_type){
         $list = [
-            '体比和用'=>['type'=>'小吉','text'=>'吉，所求事情终会如愿，一切顺利'],
-            '体生用'=>['type'=>'小凶','text'=>'所测事情困难重重，很难成功'],
-            '体克用'=>['type'=>'小吉','text'=>'所测之事能够成功，只是需要一点时间'],
-            '用克体'=>['type'=>'大凶','text'=>'所测之事非但不能成功，还对自己有所损失或者伤害'],
-            '用生体'=>['type'=>'大吉','text'=>'所测之事必然成功，很特别顺心如意'],
+            '体比和用'=>['type'=>'小吉','text'=>'所测之事('.$problem_type.')终会如愿，一切顺利'],
+            '体生用'=>['type'=>'小凶','text'=>'所测之情('.$problem_type.')困难重重，很难成功'],
+            '体克用'=>['type'=>'小吉','text'=>'所测之事('.$problem_type.')能够成功，只是比较耗时、耗力、耗财'],
+            '用克体'=>['type'=>'大凶','text'=>'所测之事('.$problem_type.')非但不能成功，还对自己有所损失或者伤害'],
+            '用生体'=>['type'=>'大吉','text'=>'所测之事('.$problem_type.')必然成功，很特别顺心如意'],
         ];
          if(isset($list[$str])){
              return $list[$str];

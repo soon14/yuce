@@ -85,6 +85,9 @@ class HomeController extends Controller
             $this->error('error');
         }
         $result = json_decode($result->result);
+        $Sizhu = new Sizhu();
+        $result->user_data->sizhu = $Sizhu->getSizhu($result->user_data->cesuan_time);
+
         if(Common::isMobile()){
             $act_name='qr_result';
         }else{

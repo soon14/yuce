@@ -4,12 +4,13 @@
 	<form id="form1" class="form-horizontal" action="" method="post">
 		<h2 class="text-center">测算结果</h2>
 		<div class="shuoming">
-			<hr>
 			<dl class="dl-horizontal">
 				<dt>测算号</dt>
 				<dd>{{$result->user_data->ce_sn}}</dd>
 				<dt>测算日期</dt>
 				<dd>{{$result->user_data->cesuan_time}} {{$result->user_data->shichen}} 时</dd>
+				<dt>测算四柱</dt>
+				<dd>{{$result->user_data->sizhu['nianzhu']}} {{$result->user_data->sizhu['yuezhu']}} {{$result->user_data->sizhu['rizhu']}} {{$result->user_data->sizhu['shizhu']}}</dd>
 				<dt>所问事项</dt>
 				<dd>{{$result->user_data->problem_type}}</dd>
 				<dt>事情简述</dt>

@@ -26,6 +26,7 @@ class Sizhu
             $day = date('d');
             $hour = date('H');
         }else{
+            $date = strtotime($date);
             $year = date('Y',$date);
             $month = date('m',$date);
             $day = date('d',$date);

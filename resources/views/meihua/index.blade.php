@@ -27,7 +27,7 @@
 				<h4>请选择测事类型</h4>
 				<ul class="list-inline">
 					@foreach($data as $k =>$type)
-						<li><input type="radio" name="problem_type" class="radio-check" value="{{$type}}"> {{$type}}</li>
+						<li><input type="radio" @if($k==0) checked @endif name="problem_type" class="radio-check" value="{{$type}}"> {{$type}}</li>
 					@endforeach
 				</ul>
 			</div>
@@ -41,7 +41,7 @@
 
 			</div>--}}
 			<div class="form-group col-xs-12">
-				<h4 for="problem_text">简述你要测的事情</h4>
+				<h4>简述你要测的事情</h4>
 			</div>
 			<div class="form-group col-xs-12">
 					<textarea class="form-control" rows="3" name="problem_text" id="problem_text" placeholder="简述你要测的事情"></textarea>

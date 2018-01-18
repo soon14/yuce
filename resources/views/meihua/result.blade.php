@@ -2,7 +2,7 @@
 @section('content')
 <div class="jumbotron">
 	<form id="form1" class="form-horizontal" action="" method="post">
-		<h2>测算结果</h2>
+		<h2 class="text-center">测算结果</h2>
 		<div class="shuoming">
 			<hr>
 			<dl class="dl-horizontal">

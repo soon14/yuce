@@ -25,6 +25,11 @@ class Sizhu
             $month = date('m');
             $day = date('d');
             $hour = date('H');
+        }else{
+            $year = date('Y',$date);
+            $month = date('m',$date);
+            $day = date('d',$date);
+            $hour = date('H',$date);
         }
         $result['nianzhu'] = $this->nianzhu($year);
         $result['yuezhu'] = $this->yuezhu($month);

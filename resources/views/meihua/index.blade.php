@@ -6,9 +6,8 @@
 		<div class="col-xs-12">
 			<hr>
 			<h4>占卜说明</h4>
-			<div class="col-xs-6">
-				<p>心里先想好要问的事情，然后随机想出两个字来，本站仅限两个字，不用多思考;
-					有事则占，无事不占，多占无益.</p>
+			<div class="col-xs-12">
+				<p>心里先想好要问的事情，然后随机想出两个字来，本站仅限两个字，不用多思考;有事则占，无事不占，多占无益.</p>
 				<p><span class="text-success">{{$date}}</span></p>
 				<p><span class="text-danger">{{$sizhu['nianzhu']}},{{$sizhu['yuezhu']}},{{$sizhu['rizhu']}},{{$sizhu['shizhu']}}</span></p>
 			</div>

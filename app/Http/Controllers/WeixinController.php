@@ -19,43 +19,26 @@ class WeixinController extends Controller
             'token'     => env('wx_token'),
             'log' => [
                 'level' => 'debug',
-                'file'  => storage_path('wx.log'),
+                'file'  => storage_path('logs/wx.log'),
             ],
             // ...
         ];
     }
 
 
-    //验证消息
+    //发送消息
     public function send()
     {
         $app = Factory::officialAccount($this->config);
+        $url = env('APP_URL');
+        $short_url = $app->url->shorten($url);
 
-        $app->server->push(function ($message) {
-            return "您好！欢迎使用 EasyWeChat!";
+        $app->server->push(function ($message) use ($short_url) {
+            return "您好！欢迎关注易学古今,我还会算卦哦,戳此链接：".$short_url['short_url'];
         });
         $response = $app->server->serve();
         // 将响应输出
         $response->send();
 
     }
-    //检查签名
-    private function checkSignature()
-    {
-        $signature = $_GET["signature"];
-        $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];
-        $token = "weixin";
-        $tmpArr = array($token, $timestamp, $nonce);
-        sort($tmpArr, SORT_STRING);
-        $tmpStr = implode($tmpArr);
-        $tmpStr = sha1($tmpStr);
-        if($tmpStr == $signature){
-            return true;
-
-        }else{
-            return false;
-        }
-    }
-    //响应消息
 }

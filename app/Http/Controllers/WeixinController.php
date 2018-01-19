@@ -35,7 +35,7 @@ class WeixinController extends Controller
             $url = env('APP_URL');
             if($message['MsgType'] == 'text'){
                 if(preg_match('/^我要/',$message['Content'])){
-                    return "真的吗";
+                    return "真的吗".$message['FromUserName'];
                 }else{
                     return "假的";
                 }

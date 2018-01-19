@@ -16,3 +16,5 @@ Route::get('/', 'HomeController@index');
 Route::post('/do_result', 'HomeController@do_result');
 Route::get('/get_result', 'HomeController@get_result');
 Route::get('/list', 'HomeController@getList');
+
+

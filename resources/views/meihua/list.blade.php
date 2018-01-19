@@ -19,7 +19,6 @@
 						<th>测事简述</th>
 						<th>用户ip</th>
 						<th>用户client</th>
-
 					</tr>
 					</thead>
 					<tbody>
@@ -35,7 +34,6 @@
 						<td>{{$item->client_type}}</td>
 					</tr>
 					@endforeach
-
 					</tbody>
 				</table>
 				{{ $list->appends($params)->links() }}

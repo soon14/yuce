@@ -19,7 +19,7 @@ class WeixinController extends Controller
             'token'     => env('wx_token'),
             'log' => [
                 'level' => 'debug',
-                'file'  => '/tmp/easywechat.log',
+                'file'  => storage_path('wx.log'),
             ],
             // ...
         ];

@@ -4,7 +4,6 @@ namespace App;
 
 use App\Libs\Common;
 use App\Libs\Sizhu;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 

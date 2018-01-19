@@ -9,6 +9,6 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="text-muted"><strong>Copyright &copy; <?= date('Y') ?> 九宫预测.</strong> 推荐使用chrome,firefox或IE8以上浏览器.</p>
+        <p class="text-muted"><strong>Copyright &copy; <?= date('Y') ?> 九宫预测.</strong></p>
     </div>
 </footer>

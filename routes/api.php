@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('weixin/token', 'WeixinController@token');
 Route::post('weixin/token', 'WeixinController@token');
 Route::any('weixin/send', 'WeixinController@send');
+Route::any('weixin/qigua', 'WeixinController@qigua');

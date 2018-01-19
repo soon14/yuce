@@ -52,9 +52,9 @@ class WeixinController extends Controller
         $response->send();
 
     }
-    private function qigua($data){
+    public function qigua($data=[]){
         $meihua = new Meihua;
-        $url = $meihua->qigua($data);
+        $url = $meihua->qiGuaByRand($data);
         return $url;
     }
 }

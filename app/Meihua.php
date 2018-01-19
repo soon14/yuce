@@ -11,7 +11,11 @@ class Meihua extends Model
 {
 
 
-
+    /**
+     * 随机起卦
+     * @param $param
+     * @return string
+     */
     public function qiGuaByRand($param) {
         $data ['t1_len'] = rand(1,9999);
         $data ['t2_len'] = rand(1,9999);
@@ -33,7 +37,7 @@ class Meihua extends Model
         $url = asset('/get_result?csn='.$sn);
         return $url;
     }
-    public function qigua($data){
+    protected function qigua($data){
         //记录用户提交
         $fid = DB::table('cz_user_post')->insertGetId($data);
 

@@ -34,7 +34,11 @@ class WeixinController extends Controller
         $app->server->push(function ($message)  {
             $url = env('APP_URL');
             if($message['MsgType'] == 'text'){
-                return "假的";
+                if(preg_match('/^我要/',$message['Content'])){
+                    return "真的吗";
+                }else{
+                    return "假的";
+                }
             }
             return "您好！欢迎关注易学古今,我还会算卦哦,戳此链接：".$url;
         });

@@ -25,8 +25,6 @@ class WeixinController extends Controller
             // ...
         ];
     }
-
-
     //发送消息
     public function send()
     {

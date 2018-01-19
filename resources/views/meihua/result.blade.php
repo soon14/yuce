@@ -91,6 +91,8 @@
 						 }
 					@endphp
 					<p> <strong class="{{$text_style}}">{{$result->duanyan->type}}</strong> {{$result->duanyan->name}}:<span>{{$result->duanyan->text}}</span></p>
+					<p>成功指数： <strong class="{{$text_style}}">{{$result->score}}%</strong> </p>
+					<div class="alert alert-warning" role="alert"><strong>温馨提示!</strong> 本次预测结果没有人为干预，仅供参考！</div>
 				</div>
 			</div>
 		</div>

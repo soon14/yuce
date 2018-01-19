@@ -30,11 +30,12 @@ class WeixinController extends Controller
     public function send()
     {
         $app = Factory::officialAccount($this->config);
-        $url = env('APP_URL');
-        $short_url = $app->url->shorten($url);
 
-        $app->server->push(function ($message) use ($short_url) {
-            return "您好！欢迎关注易学古今,我还会算卦哦,戳此链接：".$short_url['short_url'];
+
+
+        $app->server->push(function ($message)  {
+            $url = env('APP_URL');
+            return "您好！欢迎关注易学古今,我还会算卦哦,戳此链接：".$url;
         });
         $response = $app->server->serve();
         // 将响应输出

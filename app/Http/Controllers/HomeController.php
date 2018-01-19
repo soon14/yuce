@@ -195,6 +195,16 @@ class HomeController extends Controller
         for ($i = 0; $i < 9; $i++) $code .= $tempcode[ $seq[$i] ];
         return $pre.$code;
     }
+    public function getList(Request $request){
+        $show = $request->get('show','no');
+        if($show == 'no'){
+            return redirect('/');
+        }
+        $list = DB::table('cz_user_post')->orderBy('fid','desc')->paginate();
+
+        $params['show'] = $show;
+        return view('meihua.list',['list'=>$list,'params'=>$params]);
+    }
 
 
 }

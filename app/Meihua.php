@@ -19,6 +19,16 @@ class Meihua extends Model
      * @return string
      */
     public function qiGuaByRand($param) {
+        $find_res = DB::table('cz_user_post')
+            ->where('uid',$param['uid'])
+            ->where('problem_text',$param['problem_text'])
+            ->whereRaw("date_format(ctime,'%Y-%m-%d')",date('Y-m-d'))
+            ->first();
+        if($find_res){
+            //同一用户的同一次预测直接返回之前的结果，防止用户测很多次
+            $url = asset('/get_result?csn='. $find_res->ce_sn);
+            return $url;
+        }
         $data ['t1_len'] = rand(1,9999);
         $data ['t2_len'] = rand(1,9999);
         //起卦核心算法

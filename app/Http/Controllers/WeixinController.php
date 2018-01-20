@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libs\Common;
 use App\Meihua;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
@@ -28,7 +29,6 @@ class WeixinController extends Controller
     //发送消息
     public function send()
     {
-
         $app = Factory::officialAccount($this->config);
 
         $app->server->push(function ($message)  {
@@ -36,12 +36,13 @@ class WeixinController extends Controller
             $input = [];
             if($message['MsgType'] == 'text'){
                 if(preg_match('/^预测(.+?)/',$message['Content'],$input)){
-                    if(empty(trim($input[1]))){
+                    $word = $this->filter($input[1]);
+                    if(strlen($word)<6 || strlen($word)>60){
                         return "回复：预测+你要测的事情简述，比如'预测我今天能否面试成功'，即可起卦，或者直接戳此链接：".$url;
                     }
                     $data['uid'] = $message['FromUserName'];
                     $data['problem_type'] = '杂事';
-                    $data['problem_text'] = $message['Content'];
+                    $data['problem_text'] = $this->filter($message['Content']);
                     $data['ip'] = $message['FromUserName'];
                     $data['client_type'] = 'weixin';
                     $url = $this->qigua($data);
@@ -54,6 +55,12 @@ class WeixinController extends Controller
         // 将响应输出
         $response->send();
 
+    }
+    private function filter($str =''){
+        $str = trim($str);
+        $str = Common::strFilter($str);
+        $str = addslashes($str);
+        return $str;
     }
     public function qigua($data=[]){
         $meihua = new Meihua;

@@ -28,12 +28,20 @@ class WeixinController extends Controller
     //发送消息
     public function send()
     {
+        $message['Content'] = '预测微微';
+        preg_match('/^预测(.+?)/',$message['Content'],$input);
+        var_dump($input);
+        exit;
         $app = Factory::officialAccount($this->config);
 
         $app->server->push(function ($message)  {
             $url = env('APP_URL');
+            $input = [];
             if($message['MsgType'] == 'text'){
-                if(preg_match('/^预测/',$message['Content'])){
+                if(preg_match('/^预测(.+?)/',$message['Content'],$input)){
+                    if(empty($input[1])){
+                        return "回复：预测+你要测的事情简述，比如'预测我今天能否面试成功'，即可起卦，或者直接戳此链接：".$url;
+                    }
                     $data['uid'] = $message['FromUserName'];
                     $data['problem_type'] = '杂事';
                     $data['problem_text'] = $message['Content'];

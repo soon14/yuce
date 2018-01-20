@@ -48,7 +48,7 @@ class WeixinController extends Controller
                     return "查看结果，戳此链接：$url";
                 }
             }
-            return "您好！欢迎关注易学古今,我还会算卦哦,回复：预测+你要测的事情简述，即可起卦，或者直接戳此链接：".$url;
+            return "回复：预测+你要测的事情简述，比如'预测我今天能否面试成功',即可起卦，或者直接戳此链接：".$url;
         });
         $response = $app->server->serve();
         // 将响应输出

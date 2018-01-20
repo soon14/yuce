@@ -28,10 +28,7 @@ class WeixinController extends Controller
     //发送消息
     public function send()
     {
-        $message['Content'] = '预测微微';
-        preg_match('/^预测(.+?)/',$message['Content'],$input);
-        var_dump($input);
-        exit;
+
         $app = Factory::officialAccount($this->config);
 
         $app->server->push(function ($message)  {

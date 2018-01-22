@@ -6,6 +6,7 @@ use App\Libs\Common;
 use App\Meihua;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class WeixinController extends Controller
 {
@@ -35,7 +36,7 @@ class WeixinController extends Controller
             $url = env('APP_URL');
             $input = [];
             if($message['MsgType'] == 'text'){
-                if(preg_match('/^预测(.+?)/',$message['Content'],$input)){
+                if(preg_match('/^预测([\s\S]+)/',$message['Content'],$input)){
                     $word = $this->filter($input[1]);
                     if(strlen($word)<6 || strlen($word)>60){
                         return "回复：预测+你要测的事情简述，比如'预测我今天能否面试成功'，即可起卦，或者直接戳此链接：".$url;
@@ -67,4 +68,5 @@ class WeixinController extends Controller
         $url = $meihua->qiGuaByRand($data);
         return $url;
     }
+
 }

@@ -76,7 +76,7 @@ class WeixinController extends Controller
             return '';
         }
         if(!empty($res)){
-            $res = json_decode($res);
+            $res = json_decode($res,true);
             return $res['data'];
         }
         return '';

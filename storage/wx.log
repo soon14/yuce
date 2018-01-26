@@ -1,0 +1,2 @@
+[2018-01-19 11:36:53] easywechat.officialaccount.application.DEBUG: Request received: {"method":"GET","uri":"http://test.cezi.cn/api/weixin/send","content-type":null,"content":""} []
+[2018-01-19 11:36:53] easywechat.officialaccount.application.DEBUG: Server response created: {"content":"<xml><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[您好！欢迎使用 EasyWeChat!]]></Content><ToUserName><![CDATA[]]></ToUserName><FromUserName><![CDATA[]]></FromUserName><CreateTime>1516333013</CreateTime></xml>"} []

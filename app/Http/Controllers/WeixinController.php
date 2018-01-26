@@ -68,7 +68,8 @@ class WeixinController extends Controller
         $url = $meihua->qiGuaByRand($data);
         return $url;
     }
-    public function identifyTextCategory($text){
+    public function identifyTextCategory(Request $request){
+        $text = $request->get('text');
         $api = 'http://127.0.0.1:8000/nlp?text='.$text;
         try{
             $res = file_get_contents($api);

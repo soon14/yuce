@@ -76,7 +76,6 @@ class WeixinController extends Controller
         }catch (\Exception $e){
             return '';
         }
-
         if(!empty($res)){
             $res = json_decode($res,true);
             return $res['data'];

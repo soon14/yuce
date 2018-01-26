@@ -280,11 +280,6 @@ class Meihua extends Model
     }
     //生成测算单号号
     public function get_ce_sn($id) {
-        $pre = sprintf('%02d', $id / 14000000);        // 每1400万的前缀
-        $tempcode = sprintf('%09d', sin(($id % 14000000 + 1) / 10000000.0) * 123456789);    // 这里乘以 123456789 一是一看就知道是9位长度，二则是产生的数字比较乱便于隐蔽
-        $seq = '371482506';        // 这里定义 0-8 九个数字用于打乱得到的code
-        $code = '';
-        for ($i = 0; $i < 9; $i++) $code .= $tempcode[ $seq[$i] ];
-        return $pre.$code;
+        return date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
     }
 }

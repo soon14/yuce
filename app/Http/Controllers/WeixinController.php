@@ -42,7 +42,7 @@ class WeixinController extends Controller
                         return "回复：预测+你要测的事情简述，比如'预测我今天能否面试成功'，即可起卦，或者直接戳此链接：".$url;
                     }
                     $data['uid'] = $message['FromUserName'];
-                    $data['problem_type'] = '杂事';
+                    $data['problem_type'] = $this->identifyTextCategory($word);
                     $data['problem_text'] = $this->filter($message['Content']);
                     $data['ip'] = $message['FromUserName'];
                     $data['client_type'] = 'weixin';
@@ -67,6 +67,19 @@ class WeixinController extends Controller
         $meihua = new Meihua;
         $url = $meihua->qiGuaByRand($data);
         return $url;
+    }
+    public function identifyTextCategory($text){
+        $api = 'http://127.0.0.1:8000/nlp?text='.$text;
+        try{
+            $res = file_get_contents($api);
+        }catch (\Exception $e){
+            return '';
+        }
+        if(!empty($res)){
+            $res = json_decode($res);
+            return $res['data'];
+        }
+        return '';
     }
 
 }

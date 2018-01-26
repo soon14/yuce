@@ -16,8 +16,11 @@ Route::get('/', 'HomeController@index');
 Route::post('/do_result', 'HomeController@do_result');
 Route::get('/get_result', 'HomeController@get_result');
 Route::get('/list', 'HomeController@getList');
-Route::get('/ai/train', 'AiController@train');
-Route::post('/ai/save', 'AiController@train');
-Route::get('/ai/learn', 'AiController@learn');
+Route::get('/ai/train', 'AiController@text');
+Route::post('/ai/save', 'AiController@text');
+
+Route::get('/ai/learn', 'AiController@train');
+Route::get('/ai/predict', 'AiController@predict');
+Route::get('/ai/test', 'AiController@test');
 
 

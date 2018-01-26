@@ -8,15 +8,9 @@
 		<form class="form-horizontal" action="/ai/save" method="post">
 			{{csrf_field()}}
 			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">文本</label>
-				<div class="col-sm-10">
-					<input type="text" name="data[text][]" class="form-control" id="inputEmail3" placeholder="文本">
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">分类</label>
 				<div class="col-sm-10">
-					<select class="form-control " name="data[cate][]">
+					<select class="form-control " name="data[cate]">
 						@foreach($cates as $k =>$cate)
 							<option value="{{$cate->cate_key}}">{{$cate->cate_name}}</option>
 						@endforeach
@@ -24,37 +18,44 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">文本</label>
+				<label for="inputEmail3" class="col-sm-2 control-label">文本1</label>
+				<div class="col-sm-10">
+					<input type="text" name="data[text][]" class="form-control" id="inputEmail3" placeholder="文本">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">文本2</label>
+				<div class="col-sm-10">
+					<input type="text" name="data[text][]" class="form-control" id="inputEmail3" placeholder="文本">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">文本3</label>
 				<div class="col-sm-10">
 					<input type="text" name="data[text][]" class="form-control" id="inputEmail3" placeholder="文本">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputPassword3" class="col-sm-2 control-label">分类</label>
-				<div class="col-sm-10">
-					<select class="form-control " name="data[cate][]">
-						@foreach($cates as $k =>$cate)
-							<option value="{{$cate->cate_key}}">{{$cate->cate_name}}</option>
-						@endforeach
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">文本</label>
+				<label for="inputEmail3" class="col-sm-2 control-label">文本4</label>
 				<div class="col-sm-10">
 					<input type="text" name="data[text][]" class="form-control" id="inputEmail3" placeholder="文本">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputPassword3" class="col-sm-2 control-label">分类</label>
+				<label for="inputEmail3" class="col-sm-2 control-label">文本5</label>
 				<div class="col-sm-10">
-					<select class="form-control " name="data[cate][]">
-						@foreach($cates as $k =>$cate)
-							<option value="{{$cate->cate_key}}">{{$cate->cate_name}}</option>
-						@endforeach
-					</select>
+					<input type="text" name="data[text][]" class="form-control" id="inputEmail3" placeholder="文本">
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">文本6</label>
+				<div class="col-sm-10">
+					<input type="text" name="data[text][]" class="form-control" id="inputEmail3" placeholder="文本">
+				</div>
+			</div>
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<input type="hidden" name="save" value="yes">

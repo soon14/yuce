@@ -21,3 +21,4 @@ Route::post('weixin/token', 'WeixinController@token');
 Route::any('weixin/send', 'WeixinController@send');
 Route::any('weixin/qigua', 'WeixinController@qigua');
 Route::any('weixin/scws', 'WeixinController@scws');
+Route::any('weixin/test', 'WeixinController@identifyTextCategory');

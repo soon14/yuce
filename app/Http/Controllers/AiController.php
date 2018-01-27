@@ -126,6 +126,16 @@ class AiController extends Controller
         }
     }
     public function get_words($text){
-        return $text;
+        $api = 'http://127.0.0.1:8000/nlp?cut_word=1&text='.$text;
+        try{
+            $res = file_get_contents($api);
+        }catch (\Exception $e){
+            return '';
+        }
+        if(!empty($res)){
+            $res = json_decode($res,true);
+            return $res['data'];
+        }
+        return '';
     }
 }

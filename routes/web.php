@@ -22,5 +22,6 @@ Route::post('/ai/save', 'AiController@text');
 Route::get('/ai/learn', 'AiController@train');
 Route::get('/ai/predict', 'AiController@predict');
 Route::get('/ai/test', 'AiController@test');
+Route::any('/ai/hugua', 'AiController@hugua');
 
 

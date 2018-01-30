@@ -63,7 +63,7 @@ class Meihua extends Model
         DB::table('cz_user_post')->where('fid',$fid)->update(['ce_sn'=>$sn]);
         //所得原卦
         $s_gua = DB::table('cz_s_gua')->where('up_id',$data['up_gua'])->where('down_id',$data['down_gua'])->first();
-        //$h_gua = DB::table('cz_s_gua')->select(['id','name','fullname'])->where('id',$s_gua->h_gua_id)->first();
+        $h_gua = DB::table('cz_s_gua')->where('id',$s_gua->h_gua_id)->first();
         $dongyao = DB::table('cz_dongyao')->where('s_gua_id',$s_gua->id)->where('position',$data['dongyao'])->first();
         $b_gua = DB::table('cz_s_gua')->where('id',$dongyao->b_gua_id)->first();
 
@@ -79,7 +79,7 @@ class Meihua extends Model
         $user_data['problem_type'] = $data['problem_type'];
         $user_data['ce_sn'] = $sn;
 
-        $result = ['s_gua'=>$s_gua,'b_gua'=>$b_gua,'dongyao'=>$dongyao,'user_data'=>$user_data];
+        $result = ['s_gua'=>$s_gua,'h_gua'=>$h_gua,'b_gua'=>$b_gua,'dongyao'=>$dongyao,'user_data'=>$user_data];
         $tiyong  =  $this->tiyong($result);
         $result = array_merge($result,$tiyong);
 
@@ -148,6 +148,9 @@ class Meihua extends Model
         if(isset($list[$str])){
             return $list[$str];
         }
+    }
+    public function yingqi($result){
+        
     }
 
     /**

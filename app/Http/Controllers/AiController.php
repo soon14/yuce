@@ -138,4 +138,18 @@ class AiController extends Controller
         }
         return '';
     }
+
+    public function hugua(Request $request){
+        $save = $request->get('save');
+
+        if($save == 'yes'){
+            $id = $request->get('id');
+            $hu_id = $request->get('hu_id');
+            DB::table('cz_s_gua')->where('id',$id)->update(['hu_id'=>$hu_id]);
+        }
+        $list = DB::table('cz_s_gua')->orderBy('up_id')->orderBy('down_id')->get();
+
+        return view('ai.hugua',['list'=>$list]);
+
+    }
 }

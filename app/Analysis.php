@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Score extends Model
+class Analysis extends Model
 {
 
     protected static $text_class;
@@ -58,9 +58,27 @@ class Score extends Model
     /**
      * @param $text_class
      */
-    public static function getDuanyu($text_class){
+    public static function getDuanyu($text,$text_class,$t_gua,$y_gua,$b_gua){
         self::$text_class = $text_class;
+        switch ($text_class){
+            case $text_class == '婚姻':
+                /**
+                 * 一、若问能否结婚成功
+                 * 1、体克用：可以但是比较晚实现或者比较花钱或者比较耗费精力周折
+                 * 2、体用比和：你们的婚姻能够成功，良配无疑，一切顺利，好好珍惜
+                 * 3、用生体：你们很恩爱，婚姻会大吉大利，结婚当然是自然而然的事
+                 * 4、用克体：你们的婚姻终究难成，徒劳无功，即时勉强成婚也对己方不利
+                 * 5、体生用：婚姻难成，勉强不来
+                 * 二、若问何时成婚
+                 * 体互变卦数之和（最小 6，最大48）
+                 *单位如何取？统一以天为单位（1-3000）* 1，（3000-6000）*2，（>6000）
+                 */
 
+
+                break;
+
+
+        }
 
     }
 

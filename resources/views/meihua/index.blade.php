@@ -27,7 +27,7 @@
 				<h4>请选择测事类型</h4>
 				<ul class="list-inline">
 					@foreach($data as $k =>$type)
-						<li><input type="radio" @if($k==0) checked @endif name="problem_type" class="radio-check" value="{{$type}}"> {{$type}}</li>
+						<li><input type="radio" @if($k=='aiqing') checked @endif name="problem_type" class="radio-check" value="{{$type}}"> {{$type}}</li>
 					@endforeach
 				</ul>
 			</div>

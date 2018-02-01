@@ -150,7 +150,7 @@ class Meihua extends Model
         }
     }
     public function yingqi($result){
-        
+
     }
 
     /**
@@ -277,9 +277,16 @@ class Meihua extends Model
         }
         return '';
     }
-    public   function get_problem_type(){
-        $type=['出行','工作','投资','事业','爱情','婚姻','健康','寻物','寻人','杂事'];
-        return $type;
+    public   static function get_problem_type($key=''){
+        $cates_res = DB::table('text_class')->get();
+        $cates = [];
+        foreach ($cates_res as $k =>$v){
+            $cates[$v->cate_key] = $v->cate_name;
+        }
+        if(isset($cates[$key])){
+            return $cates[$key];
+        }
+        return $cates;
     }
     //生成测算单号号
     public function get_ce_sn($id) {

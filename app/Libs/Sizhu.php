@@ -65,7 +65,7 @@ class Sizhu
             $this->yuegan %= 10;
         }
 
-        return $a[$this->yuegan] . $b[$month - 1];
+        return $a[$this->yuegan-1] . $b[$month -1];
     }
     function rizhu($year,$month,$day)
     {

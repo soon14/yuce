@@ -55,13 +55,20 @@
 						<div class="col-sm-4">变卦：<strong>{{$result->b_gua->fullname}}</strong><img src="/data/thumb/{{$result->b_gua->name}}.png" class="img-thumbnail"></div>
 					</div>
 					<hr>
-					<h4>动爻</h4>
-					<p>{{$result->dongyao->name}}</p>
 					<h4>爻辞</h4>
 					<p>{{$result->dongyao->yaoci}}</p>
+					@if(isset($result->dongyao->yaoci_jieshi))
+					<h4>爻辞解释</h4>
+					<p>{{$result->dongyao->yaoci_jieshi}}</p>
+					@endif
+					<h4>象辞</h4>
+					<p>{{$result->dongyao->xiangci}}</p>
+					@if(isset($result->dongyao->xiangci_jieshi))
+					<h4>象辞解释</h4>
+					<p>{{$result->dongyao->xiangci_jieshi}}</p>
+					@endif
 					<h4>邵康节解卦</h4>
 					<p>{{$result->dongyao->shaoci}}</p>
-					<hr>
 					<h4>智能断卦</h4>
 					<p>{{$result->tiyong->zhu->name}} 为 {{$result->tiyong->zhu->tiyong}} , {{$result->tiyong->bing->name}} 为 {{$result->tiyong->bing->tiyong}}</p>
 					<p>{{$result->tiyong->zhu->name}} {{$result->tiyong->zhu->attribute}} <span class="text-success">{{$result->tiyong->guanxi}}</span> {{$result->tiyong->bing->name}} {{$result->tiyong->bing->attribute}}</p>
@@ -79,7 +86,7 @@
 					@endphp
 					<p> <strong class="{{$text_style}}">{{$result->duanyan->type}}</strong> {{$result->duanyan->name}}:<span>{{$result->duanyan->text}}</span></p>
 					@if(isset($result->score))
-					<p>成功指数： <strong class="{{$text_style}}">{{$result->score}}%</strong> </p>
+					<p>事物发展指数： <strong class="{{$text_style}}">{{$result->score}}%</strong> </p>
 					@endif
 					<div class="alert alert-warning" role="alert"><strong>温馨提示!</strong> 本次预测结果没有人为干预，仅供参考！</div>
 				</div>

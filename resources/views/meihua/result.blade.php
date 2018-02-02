@@ -51,7 +51,9 @@
 					<h4>卦象</h4>
 					<div class="col-sm-12">
 						<div class="col-sm-4">本卦：<strong>{{$result->s_gua->fullname}}</strong><img src="/data/thumb/{{$result->s_gua->name}}.png" class="img-thumbnail"></div>
+						@if(isset($result->h_gua))
 						<div class="col-sm-4">互卦：<strong>{{$result->h_gua->fullname}}</strong><img src="/data/thumb/{{$result->h_gua->name}}.png" class="img-thumbnail"></div>
+						@endif
 						<div class="col-sm-4">变卦：<strong>{{$result->b_gua->fullname}}</strong><img src="/data/thumb/{{$result->b_gua->name}}.png" class="img-thumbnail"></div>
 					</div>
 					<hr>
@@ -61,8 +63,10 @@
 					<h4>爻辞解释</h4>
 					<p>{{$result->dongyao->yaoci_jieshi}}</p>
 					@endif
+					@if(isset($result->dongyao->xiangci))
 					<h4>象辞</h4>
 					<p>{{$result->dongyao->xiangci}}</p>
+					@endif
 					@if(isset($result->dongyao->xiangci_jieshi))
 					<h4>象辞解释</h4>
 					<p>{{$result->dongyao->xiangci_jieshi}}</p>

@@ -99,7 +99,7 @@
 					<p>事物发展指数： <strong class="text-{{$text_style}}">{{$result->duanyan->score}}%</strong> </p>
 					@endif
 					@if(isset($result->yingqi))
-						<p>应期之数： <strong class="text-{{$text_style}}">{{$result->yingqi}}</strong> </p>
+						<p>事物应期之数： <strong class="text-{{$text_style}}">{{$result->yingqi}}</strong>  </p>
 					@endif
 					<div class="alert alert-warning" role="alert"><strong>温馨提示!</strong> 本次预测结果没有人为干预，仅供参考！</div>
 				</div>

@@ -59,6 +59,7 @@ class Analysis extends Model
         $h_gua_num = $result['h_gua']->up_id + $result['h_gua']->down_id;
         $b_gua_num = $result['b_gua']->up_id + $result['b_gua']->down_id;
         $gua_num = $s_gua_num + $h_gua_num + $b_gua_num;
+
         return $gua_num;
 
 

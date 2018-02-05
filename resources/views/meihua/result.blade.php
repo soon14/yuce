@@ -4,6 +4,9 @@
 	.col-sm-4 {
 		margin-bottom: 10px;
 	}
+	#duanyu {
+		padding: 15px;
+	}
 	</style>
 @endsection
 @section('content')
@@ -78,19 +81,25 @@
 					<p>{{$result->tiyong->zhu->name}} {{$result->tiyong->zhu->attribute}} <span class="text-success">{{$result->tiyong->guanxi}}</span> {{$result->tiyong->bing->name}} {{$result->tiyong->bing->attribute}}</p>
 					@php
 					$text_style = '';
-						if($result->duanyan->type == '大吉') {
-						 	$text_style = 'text-success';
-						 }elseif($result->duanyan->type == '小吉') {
-						  	$text_style = 'text-primary';
-						 }elseif($result->duanyan->type == '小凶'){
-						  	$text_style = 'text-warning';
-						 }elseif($result->duanyan->type == '大凶')  {
-						 	$text_style = 'text-danger';
+						if(in_array($result->duanyan->type, ['大吉','大吉大利','吉利','吉'])) {
+						 	$text_style = 'success';
+						 }elseif(in_array($result->duanyan->type, ['小吉','先吉后不吉','先吉后不利','先吉后凶','小吉后不利'])) {
+						  	$text_style = 'primary';
+						 }elseif(in_array($result->duanyan->type, ['小凶','凶','小凶后凶','先凶后吉'])){
+						  	$text_style = 'warning';
+						 }elseif(in_array($result->duanyan->type, ['大凶','凶']))  {
+						 	$text_style = 'danger';
+						 }else{
+						   $text_style = 'info';
 						 }
 					@endphp
-					<p> <strong class="{{$text_style}}">{{$result->duanyan->type}}</strong> {{$result->duanyan->name}}:<span>{{$result->duanyan->text}}</span></p>
-					@if(isset($result->score))
-					<p>事物发展指数： <strong class="{{$text_style}}">{{$result->score}}%</strong> </p>
+					<p> <strong class="text-{{$text_style}}">{{$result->duanyan->type}}</strong> {{$result->duanyan->name}}</p>
+					<p class="bg-{{$text_style}}" id="duanyu"><span class="tex">{{$result->duanyan->text}}</span></p>
+					@if(isset($result->duanyan->score))
+					<p>事物发展指数： <strong class="text-{{$text_style}}">{{$result->duanyan->score}}%</strong> </p>
+					@endif
+					@if(isset($result->yingqi))
+						<p>应期之数： <strong class="text-{{$text_style}}">{{$result->yingqi}}</strong> </p>
 					@endif
 					<div class="alert alert-warning" role="alert"><strong>温馨提示!</strong> 本次预测结果没有人为干预，仅供参考！</div>
 				</div>

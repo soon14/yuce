@@ -81,6 +81,7 @@ class Meihua extends Model
 
         $result = ['s_gua'=>$s_gua,'h_gua'=>$h_gua,'b_gua'=>$b_gua,'dongyao'=>$dongyao,'user_data'=>$user_data];
         $tiyong  =  $this->tiyong($result);
+        $tiyong  =  $this->tiyong($result);
         $result = array_merge($result,$tiyong);
 
         //记录日志
@@ -123,11 +124,12 @@ class Meihua extends Model
         $wuxing = $this->wuxing($t_gua,$y_gua);
         $ty_str = $wuxing['zhu']->tiyong.$wuxing['guanxi'].$wuxing['bing']->tiyong;
         $res['tiyong'] = $wuxing;
-        $res['duanyan'] = $this->duanyan($ty_str,$user_data['problem_type']);
+        //$res['duanyan'] = $this->duanyan($ty_str,$user_data['problem_type']);
         $bgua_str =  $this->biangua($t_gua,$b_gua);
-        $score_str = $ty_str.$bgua_str;
-        $res['score'] = $this->getScore($score_str);
-
+        $ty_key = $ty_str.'|'.$bgua_str;
+        //$res['score'] = $this->getScore($score_str);
+        $res['duanyan'] = $this->duanyan($ty_key,$user_data['problem_type']);
+        $res['yingqi'] = $this->yingqi($ty_key,$result);
         return $res;
     }
 
@@ -138,19 +140,10 @@ class Meihua extends Model
      * @return mixed
      */
     public function duanyan($str='',$problem_type){
-        $list = [
-            '体比和用'=>['name'=>'体用比和','type'=>'小吉','text'=>'所测之事('.$problem_type.')终会如愿，一切顺利'],
-            '体生用'=>['name'=>'体生用','type'=>'小凶','text'=>'所测之情('.$problem_type.')耗体之象，很难成功'],
-            '体克用'=>['name'=>'体克用','type'=>'小吉','text'=>'所测之事('.$problem_type.')能够成功，但有迟成之像，或耗时或耗力或耗财'],
-            '用克体'=>['name'=>'用克体','type'=>'大凶','text'=>'所测之事('.$problem_type.')非但不能成功，还对自己有所损失或者伤害'],
-            '用生体'=>['name'=>'用生体','type'=>'大吉','text'=>'所测之事('.$problem_type.')必然成功，很特别顺心如意'],
-        ];
-        if(isset($list[$str])){
-            return $list[$str];
-        }
+        return Analysis::getDuanyu($str,$problem_type);
     }
-    public function yingqi($result){
-
+    public function yingqi($ty_key,$result){
+        return Analysis::yingqi($ty_key,$result);
     }
 
     /**
@@ -239,43 +232,6 @@ class Meihua extends Model
             $content = $result;
         }
         return $content;
-    }
-    public  function getScore($str=''){
-        $list = [
-            '用生体变生体' => 100,
-            '用生体体比和变' => 96,
-            '用生体体克变' => 92,
-            '用生体体生变' => 88,
-            '用生体变克体' => 84,
-
-            '体比和用变生体' => 80,
-            '体比和用体比和变' => 76,
-            '体比和用体克变' => 72,
-            '体比和用体生变' => 68,
-            '体比和用变克体' => 64,
-
-            '体克用变生体' => 60,
-            '体克用体比和变' => 56,
-            '体克用体克变' => 52,
-            '体克用体生变' => 48,
-            '体克用变克体' => 44,
-
-            '体生用变生体' => 40,
-            '体生用体比和变' => 38,
-            '体生用体克变' => 34,
-            '体生用体生变' => 30,
-            '体生用变克体' => 26,
-
-            '用克体变生体' => 22,
-            '用克体体比和变' => 18,
-            '用克体体克变' => 8,
-            '用克体体生变' => 4,
-            '用克体变克体' => 0
-        ];
-        if(isset($list[$str])){
-            return $list[$str];
-        }
-        return '';
     }
     public   static function get_problem_type($key=''){
         $cates_res = DB::table('text_class')->get();

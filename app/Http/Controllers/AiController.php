@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Analysis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -97,23 +98,9 @@ class AiController extends Controller
         return $word_ids;
     }
     public function test(){
-        $list = DB::table('text_set')->get();
-        foreach ($list as $v){
-            if(empty($v->words)){
-                continue;
-            }
-            $words = explode(',',$v->words);
-            $word_ids = [];
-            foreach ($words as $word){
-                $find_res = DB::table('text_word')->where('word',$word)->first();
-                if($find_res){
-                    $word_ids[] = $find_res->id;
-                }else{
-                    $word_ids[] = DB::table('text_word')->insertGetId(['word'=>$word]);
-                }
-            }
-            $words_id_str = implode(',',$word_ids);
-            DB::table('text_set')->where('id',$v->id)->update(['words_id'=>$words_id_str]);
+        $list = Analysis::getScore();
+        foreach ($list as $key => $score){
+            DB::table('ty_class')->insert(['ty_key'=>$key,'score'=>$score]);
         }
         exit;
         $cate_list = ['chuxing'=>'出行','gongzuo'=>'工作',
@@ -150,6 +137,22 @@ class AiController extends Controller
         $list = DB::table('cz_s_gua')->orderBy('up_id')->orderBy('down_id')->get();
 
         return view('ai.hugua',['list'=>$list]);
+
+    }
+    public function duanyu(Request $request){
+        $save = $request->get('save');
+
+        if($save == 'yes'){
+            $data['ty_class_id'] = $request->get('ty_class_id');
+            $data['text_class'] = $request->get('text_class');
+            $data['duanyu'] = $request->get('duanyu');
+
+            DB::table('ty_duanyu')->insert($data);
+        }
+        $ty_class = DB::table('ty_class')->get();
+        $text_class = DB::table('text_class')->get();
+
+        return view('ai.duanyu',['ty_class'=>$ty_class,'text_class'=>$text_class]);
 
     }
 }

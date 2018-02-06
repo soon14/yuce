@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Analysis;
+use App\Libs\Lunar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -98,6 +99,14 @@ class AiController extends Controller
         return $word_ids;
     }
     public function test(){
+        $str = '2018020648100981';
+        $str =  hashid_encode($str);
+        var_dump($str);
+        exit;
+        $lunar=new Lunar();
+        $month = $lunar->convertSolarToLunar(2017,03,05);
+        print_r($month);
+        exit;
         $list = Analysis::getScore();
         foreach ($list as $key => $score){
             DB::table('ty_class')->insert(['ty_key'=>$key,'score'=>$score]);

@@ -27,12 +27,12 @@
 						<p>{{$result->user_data->cesuan_time}} {{$result->user_data->shichen}} 时</p>
 					</div>
 				</div>
-				<div class="row">
+				{{--<div class="row">
 					<p class="col-sm-2"><strong>测算四柱</strong></p>
 					<div class="col-sm-10">
 						<p>{{$result->user_data->sizhu['nianzhu']}} {{$result->user_data->sizhu['yuezhu']}} {{$result->user_data->sizhu['rizhu']}} {{$result->user_data->sizhu['shizhu']}}</p>
 					</div>
-				</div>
+				</div>--}}
 				<div class="row">
 					<p  class="col-sm-2"><strong>所问事项</strong></p>
 					<div class="col-sm-10">

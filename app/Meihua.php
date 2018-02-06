@@ -246,6 +246,8 @@ class Meihua extends Model
     }
     //生成测算单号号
     public function get_ce_sn($id) {
-        return date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+        $str =  date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+        $str = hashid_encode($str);
+        return $str;
     }
 }

@@ -43,13 +43,32 @@ class Sizhu
     {
         $a = array('甲','乙','丙','丁','戊','己','庚','辛','壬','癸');
         $b = array('子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥');
-
-        $this->niangan = ($year - 4) % 10;
+        $last = $year % 10;
+        if($last <= 3)
+        {
+            $last += 10;
+        }
+        $this->niangan = $last - 3;
         $tiangan = $a[$this->niangan - 1];
-
-        $this->nianzhi = ($year-4)  % 12;
-        $dizhi = $b[$this->nianzhi - 1];
-
+        $last = $year % 100;
+        if($year >= 1800 && $year <= 1899)
+        {
+            $nianzhi = $last + 9;
+        }
+        else if($year >= 1900 && $year <= 1999)
+        {
+            $nianzhi = $last + 1;
+        }
+        else if($year >= 2000 && $year <= 2099)
+        {
+            $nianzhi = $last + 5;
+        }
+        if($nianzhi > 12)
+        {
+            $nianzhi %= 12;
+        }
+        $this->nianzhi = $nianzhi;
+        $dizhi = $b[$nianzhi - 1];
         return $tiangan . $dizhi;
     }
     function yuezhu($month)
@@ -60,6 +79,7 @@ class Sizhu
         $b = array('丑','寅','卯','辰','巳','午','未','申','酉','戌','亥','子');
 
         $this->yuegan = $this->niangan * 2 + $month;
+
         if($this->yuegan > 10)
         {
             $this->yuegan %= 10;

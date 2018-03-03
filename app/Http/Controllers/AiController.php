@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class AiController extends Controller
 {
-    //
+    /**
+     * 文本标注
+     * @param Request $request
+     * @return view
+     */
     public function text(Request $request){
         $save = $request->get('save');
         if($save == 'yes'){
@@ -38,52 +42,10 @@ class AiController extends Controller
         }
         $list = DB::table('text_set')->orderBy('id','desc')->paginate(20);
         $cates = DB::table('text_class')->get();
-        /* $cates = [];
-         foreach ($cates_res as $k =>$v){
-             $cates[$v->cate_key] = $v->cate_name;
-         }*/
-        /*foreach ($list['data'] as $k =>$v){
-            $list['data'][$k]['cate_name'] = $cates[$v['cate_key']];
-        }*/
 
         return view('ai.list',['list'=>$list,'cates'=>$cates]);
     }
 
-    public function train(Request $request){
-
-        $cates_res = DB::table('text_class')->get();
-        $cates = [];
-        foreach ($cates_res as $k =>$v){
-             $cates[$v->cate_key] = $v->cate_name;
-        }
-
-        $texts = [];
-        $text_res = DB::table('text_set')->get();
-        foreach ($text_res as $v ){
-            if(empty($v->words)){
-                continue;
-            }
-            $texts[$v->cate_key][] = $v->words_id;
-        }
-        $texts_dt = [];
-        foreach ($texts as $k=>$v){
-            $texts[$k] = implode(',',$v);
-            $texts[$k]  = explode(',',$texts[$k] );
-        }
-        $labels = [];
-        foreach (array_keys($texts) as $v){
-            $labels[$v] =  $cates[$v];
-        }
-        $samples = array_values($texts);
-        $labels = array_values($labels);
-        $samples = [[5, 1, 1], [1, 5, 1], [1, 1, 5]];
-        $labels = ['a', 'b', 'c'];
-
-    }
-    public function predict(Request $request){
-        $word = $request->get('word');
-        $words_id = $this->getTextId($word);
-    }
     private function getTextId($text){
         $words = $this->get_words($text);
         $words = explode(',',$words);
@@ -121,6 +83,12 @@ class AiController extends Controller
             DB::table('text_class')->insert(['cate_name'=>$cate_name,'cate_key'=>$cate_key]);
         }
     }
+
+    /**
+     * 分词测试
+     * @param $text
+     * @return string
+     */
     public function get_words($text){
         $api = 'http://127.0.0.1:8000/nlp?cut_word=1&text='.$text;
         try{
@@ -135,6 +103,11 @@ class AiController extends Controller
         return '';
     }
 
+    /**
+     * 关联互卦
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function hugua(Request $request){
         $save = $request->get('save');
 
@@ -148,6 +121,12 @@ class AiController extends Controller
         return view('ai.hugua',['list'=>$list]);
 
     }
+
+    /**
+     * 填写断语
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function duanyu(Request $request){
         $save = $request->get('save');
 

@@ -34,6 +34,8 @@ class Meihua extends Model
         $user_str = $param['problem_text'];
         $user_words = $text->mb_str_split($user_str);
         $user_word_num = 0;
+        var_dump($user_str,$user_words);
+        exit;
         foreach ($user_words as $word){
             $user_word_num += (int)($text->find($word));
         }

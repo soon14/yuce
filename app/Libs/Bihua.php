@@ -49,14 +49,12 @@ class Bihua
             {
                 if(isset($this->data[$i][$j])){
                     $index=strstr($this->data[$i][$j], $str);
-                    var_dump($index);
-                    continue;
                     if (!($index===false)&&($index%2==0))
                         return ($i+1);//($i+1).($isFirst?$this->dataIndex[$j]:"")
                 }
             }
         }
-        return " ";
+        return 0;
     }
     function render($str, $ascii=false)
     {

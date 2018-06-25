@@ -36,12 +36,8 @@ class Meihua extends Model
         $user_word_num = 0;
         foreach ($user_words as $word){
             $word_num = $text->find($word);
-            var_dump($word_num);
-            continue;
-            $user_word_num += (int)($text->find($word));
+            $user_word_num += (int)$word_num;
         }
-        var_dump($user_str,$user_words,$user_word_num);
-        exit;
         $time_num = date('Y')+date('m')+date('d');
         $data ['t1_len'] = $time_num;
         $data ['t2_len'] = $user_word_num;

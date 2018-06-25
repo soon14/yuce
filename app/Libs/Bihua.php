@@ -49,9 +49,7 @@ class Bihua
             {
                 if(isset($this->data[$i][$j])){
                     $index=strstr($this->data[$i][$j], $str);
-                    var_dump($index);
-                    continue;
-                    if (!($index===false)&&($index%2==0))
+                    if (!$index===false)
                         return ($i+1);//($i+1).($isFirst?$this->dataIndex[$j]:"")
                 }
             }

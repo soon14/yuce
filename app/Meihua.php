@@ -35,7 +35,7 @@ class Meihua extends Model
         $user_words = $text->mb_str_split($user_str);
         $user_word_num = 0;
         foreach ($user_words as $word){
-            $user_word_num += intval($text->find($word));
+            $user_word_num += (int)($text->find($word));
         }
         $time_num = date('Y')+date('m')+date('d');
         $data ['t1_len'] = $time_num;

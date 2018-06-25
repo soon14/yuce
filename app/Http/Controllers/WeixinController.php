@@ -38,7 +38,7 @@ class WeixinController extends Controller
             if($message['MsgType'] == 'text'){
                 if(preg_match('/^预测([\s\S]+)/',$message['Content'],$input)){
                     $word = $this->filter($input[1]);
-                    if(strlen($word)<6 || strlen($word)>60){
+                    if(strlen($word)<=3 || strlen($word)>60){
                         return "回复：预测+你要测的事情简述，比如'预测我今天能否面试成功'，即可起卦，或者直接戳此链接：".$url;
                     }
                     $data['uid'] = $message['FromUserName'];

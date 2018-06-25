@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Libs\Bihua;
 use App\Libs\Common;
 use App\Libs\Sizhu;
 use Illuminate\Database\Eloquent\Model;
@@ -29,8 +30,16 @@ class Meihua extends Model
             $url = asset('/get_result?csn='. $find_res->ce_sn);
             return $url;
         }
-        $data ['t1_len'] = rand(1,9999);
-        $data ['t2_len'] = rand(1,9999);
+        $text = new Bihua();
+        $user_str = $param['problem_text'];
+        $user_words = $text->mb_str_split($user_str);
+        $user_word_num = 0;
+        foreach ($user_words as $word){
+            $user_word_num += intval($text->find($word));
+        }
+        $time_num = date('Y')+date('m')+date('d');
+        $data ['t1_len'] = $time_num;
+        $data ['t2_len'] = $user_word_num;
         //起卦核心算法
         $data ['down_gua'] = $data ['t1_len'] % 8;
         $data ['up_gua'] = $data ['t2_len'] % 8;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Analysis;
+use App\Libs\Bihua;
 use App\Libs\Lunar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -60,7 +61,24 @@ class AiController extends Controller
         }
         return $word_ids;
     }
+    /**
+     * 将字符串分割为数组
+     * @param  string $str 字符串
+     * @return array       分割得到的数组
+     */
+    function mb_str_split($str){
+        return preg_split('/(?<!^)(?!$)/u', $str );
+    }
     public function test(){
+        $str = "谢";
+        var_dump(strlen($str));
+        $words = $this->mb_str_split($str);
+        print_r($words);
+        exit;
+        $bihua = new Bihua();
+        $res = $bihua->find($str);
+        var_dump($res);
+        exit;
         $str = '2018020648100981';
         $str =  hashid_encode($str);
         var_dump($str);

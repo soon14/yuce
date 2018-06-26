@@ -38,8 +38,8 @@ class Meihua extends Model
             $word_num = $text->find($word);
             $user_word_num += (int)$word_num;
         }
-        $time_num = date('Y')+date('m')+date('d');
-        $data ['t1_len'] = $time_num+rand(0,9999);
+        $time_num = date('Y')+date('m')+date('d')+date('H')+date('i')+date('s');
+        $data ['t1_len'] = $time_num;
         $data ['t2_len'] = $user_word_num;
         //起卦核心算法
         $data ['down_gua'] = $data ['t1_len'] % 8;

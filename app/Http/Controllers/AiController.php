@@ -70,6 +70,7 @@ class AiController extends Controller
         return preg_split('/(?<!^)(?!$)/u', $str );
     }
     public function test(){
+        var_dump(date('YmdHis'));
         $str = "谢";
         var_dump(strlen($str));
         $words = $this->mb_str_split($str);

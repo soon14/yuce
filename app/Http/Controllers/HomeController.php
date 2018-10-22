@@ -12,8 +12,9 @@ class HomeController extends Controller
 {
     //
     public function index(){
-        $Sizhu = new Sizhu();
-        $sizhu = $Sizhu->getSizhu();
+        //$Sizhu = new Sizhu();
+        //$sizhu = $Sizhu->getSizhu();
+        $sizhu = date('Y-m-d H:i:s');
         $types = Meihua::get_problem_type();
         return view('meihua.index',['date'=>date('Y-m-d H:i:s'),'data'=>$types,'sizhu'=>$sizhu]);
     }

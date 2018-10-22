@@ -32,10 +32,10 @@ class Sizhu
             $day = date('d',$date);
             $hour = date('H',$date);
         }
-        $result['nianzhu'] = $this->nianzhu($year);
-        $result['yuezhu'] = $this->yuezhu($month);
-        $result['rizhu'] = $this->rizhu($year,$month,$day);
-        $result['shizhu'] = $this->shizhu($hour);
+        $result['nianzhu'] = $year;
+        $result['yuezhu'] = $month;
+        $result['rizhu'] = $day;
+        $result['shizhu'] = $hour;
 
         return $result;
     }

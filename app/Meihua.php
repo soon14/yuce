@@ -231,8 +231,8 @@ class Meihua extends Model
         $map['fid'] = $res->fid;
         $result = DB::table('cz_result')->select('result')->where($map)->first();
         $result = json_decode($result->result);
-        $Sizhu = new Sizhu();
-        $result->user_data->sizhu = $Sizhu->getSizhu($result->user_data->cesuan_time);
+        //$Sizhu = new Sizhu();
+        $result->user_data->sizhu = '';
         if($type == 'html'){
             $act_name='result';
             $content = view('meihua.'.$act_name,['result'=>$result]);

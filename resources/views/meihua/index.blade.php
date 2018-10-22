@@ -11,12 +11,12 @@
 				<h4>占卜说明</h4>
 				<p>心里先想好要问的事情,有事则占，无事不占，多占无益.</p>
 				<p><span class="text-success">{{$date}}</span></p>
-				<p>
+				{{--<p>
 					<span class="label label-success">{{$sizhu['nianzhu']}}</span>
 					<span class="label label-info">{{$sizhu['yuezhu']}}</span>
 					<span class="label label-warning">{{$sizhu['rizhu']}}</span>
 					<span class="label label-danger">{{$sizhu['shizhu']}}</span>
-				</p>
+				</p>--}}
 			</div>
 		</div>
 	</div>
